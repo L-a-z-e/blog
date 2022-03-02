@@ -6,10 +6,12 @@ import java.util.function.Supplier;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +31,28 @@ public class DummyControllerTest {
 	
 	
 	
+	@DeleteMapping("/dummy/user/{id}")
+	public String deleteUser(@PathVariable int id) {
+		
+		try {
+			userRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			return "삭제에 실패하였습니다. 해당id는 존재하지 않습니다.";
+		}
+		
+		
+		return id+"삭제되었습니다.";
+	}
+	
+	
+	
+	
 	
 	//save 함수는 id를 전달하지 않으면 insert
 	// id를 전달하면 해당 id에 대한 데이터가 있으면 update, 없으면 insert
 	
-	@Transactional
+	 //함수 종료시에 자동 commit이 됨, 더티 체킹 예를들어 id = 2 인 User 객체 정보가 영속성 컨텐스트에 없으면 DB에서 영속성 컨텍스트 1차 캐시에 가져오고, 그걸 받아오는데 변경이 일어나면 
+	@Transactional //@Transaction -> 함수 호출 종료시 커밋, 그래서 영속성 컨텍스트와 다르면 그부분 업데이트
 	@PutMapping("/dummy/user/{id}") // @RequestBody -> json 데이터 요청 -> Java Object(메세지 컨버터 Jackson 라이브러리가 변환해서 받아줌 )
 	public User updateUser(@PathVariable int id, @RequestBody User requestUser) {
 		
@@ -50,7 +69,7 @@ public class DummyControllerTest {
 		user.setEmail(requestUser.getEmail());
 		//userRepository.save(user);
 		// userRepository.save(requestUser); 이렇게 하면 requestUser에 비어있는 userName 이나 role 등은 null 로 들어감, 이유는 update가 아니라 insert가 수행되어서
-		return null;
+		return user;
 		
 		
 	}
