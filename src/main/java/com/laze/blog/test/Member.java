@@ -1,6 +1,5 @@
 package com.laze.blog.test;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,6 @@ import lombok.NoArgsConstructor;
 //@RequiredArgsConstructor - final 로 변수 만들꺼면
 
 @Data
-
 @NoArgsConstructor
 public class Member {
 	
