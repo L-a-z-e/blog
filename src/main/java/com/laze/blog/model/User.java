@@ -33,13 +33,13 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스, auto_increment
 	
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, unique = true)
 	private String userName; // 아이디
 	
 	@Column(nullable = false, length = 100) // 해쉬 ( 비밀번호 암호화 )
 	private String password;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 50, unique = true)
 	private String email;
 	//@ColumnDefault("'user'") " + ' 하고 문자열 또는 " 만 하고 숫자
 	@Enumerated(EnumType.STRING)
