@@ -1,5 +1,7 @@
 package com.laze.blog.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.laze.blog.model.User;
@@ -8,7 +10,7 @@ import com.laze.blog.model.User;
 //자동으로 bean 등록이 된다 그래서 @Repository 생략 가능
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	
+	Optional<User> findByUserName(String userName);
 }
 
 //JPA Naming 쿼리 전략 select *from user where userName = ? and password = ?

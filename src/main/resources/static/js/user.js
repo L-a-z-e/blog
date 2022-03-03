@@ -5,14 +5,8 @@ let index = {
 		});
 	
 	},
-	login: function(){
-		let data = {
-			userName:$("#userName").val(),
-			password:$("#password").val()
-		};
-		
 
-	},
+	
 	save: function(){
 		let data = {
 			userName:$("#userName").val(),
