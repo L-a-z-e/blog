@@ -20,7 +20,7 @@ spring:
     password: laze1234
     
   jpa:
-    open-in-view: true
+    open-in-view: true #영속성을 프리젠테이션 계층까지 가져가고, 트랜잭션은 Service 계층에서 종료, 그래서 Lazy Loading - 프록시 객체에 대해서 수행가능
     hibernate:
       ddl-auto: update
       naming:
