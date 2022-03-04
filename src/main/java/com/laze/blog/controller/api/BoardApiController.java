@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +31,17 @@ public class BoardApiController {
 	public ResponseDto<Integer> deleteById(@PathVariable int id){
 		boardService.deleteBoard(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	
+	@PutMapping("/api/board/{id}")
+	public ResponseDto<Integer> updateForm(@PathVariable int id, Board board){
+		
+		System.out.println("BoardApiController : update : id" + id);
+		System.out.println("BoardApiController : update : title" + board.getTitle());
+		System.out.println("BoardApiController : update : content" + board.getContent());
+		boardService.updateForm(id,board);
+		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+		
 	}
 }

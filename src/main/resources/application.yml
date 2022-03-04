@@ -9,6 +9,7 @@ server:
       
 spring:
   mvc:
+    hiddenmethod:      filter:        enabled: true
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
@@ -26,7 +27,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #Entity를 만들때 변수명 그대로 테이블에, springname쓰면 카멜이 아니라 자동으로 언더바 표기법으로 바꿔줌
       use-new-id-generator-mappings: false #JPA의 기본 넘버링 전략을 따라가지 않는다는 뜻
-    show-sql: true
+    #show-sql: true
     properties:
       hibernate:
         format_sql: true
