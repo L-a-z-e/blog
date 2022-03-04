@@ -57,11 +57,12 @@ let index = {
 	update: function(){
 		let id = $("#id").val();
 		let data = {
-			title:$("#title").val(),
-			content:$("#content").val(),
+					title:$("#title").val(),
+					content:$("#content").val(),
 		};
 		
-
+		console.log(title);
+		console.log(content);
 		$.ajax({
 			type:"PUT",
 			url:"/api/board/"+id,

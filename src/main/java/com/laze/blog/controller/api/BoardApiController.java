@@ -20,6 +20,8 @@ public class BoardApiController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+
 
 	@PostMapping("/api/board")
 	public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
@@ -34,14 +36,18 @@ public class BoardApiController {
 	}
 	
 	@PutMapping("/api/board/{id}")
-	public ResponseDto<Integer> updateForm(@PathVariable int id, Board board){
+	public ResponseDto<Integer> updateForm(@PathVariable int id,@RequestBody Board board){
 		
-		System.out.println("BoardApiController : update : id" + id);
-		System.out.println("BoardApiController : update : title" + board.getTitle());
-		System.out.println("BoardApiController : update : content" + board.getContent());
-		boardService.updateForm(id,board);
+		System.out.println("BoardApiController : update : id :" + id);
+		System.out.println("BoardApiController : update : board :" + board);
+		
+		System.out.println("BoardApiController : update : title :" + board.getTitle());
+		System.out.println("BoardApiController : update : content :" + board.getContent());
+		boardService.update(id,board);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
 	}
+
+	
 }

@@ -8,7 +8,7 @@
   
   <div class="form-group">
     <label for="title">Title:</label>
-    <input value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title">
+    <input value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title" >
   </div>
   
 

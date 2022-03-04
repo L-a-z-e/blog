@@ -36,9 +36,10 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/{id}/updateForm")
-	public String updateForm(@PathVariable int id, Model model) {
+	public String update(@PathVariable int id, Model model) {
 		model.addAttribute("board",boardService.readBoard(id));
-		
+		System.out.println("Board Controller id :" + id);
+		System.out.println("Board Controller model:" + model);
 		return "board/updateForm";
 		
 	}
