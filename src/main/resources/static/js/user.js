@@ -3,6 +3,10 @@ let index = {
 		$("#btn-save").on("click",()=>{ // function(){}, ()=>{} 를 사용하는 이유는 this를 바인딩하기 위해서
 			this.save();
 		});
+		
+		$("#btn-update").on("click",()=>{
+			this.update();
+		});
 	
 	},
 
@@ -30,7 +34,29 @@ let index = {
 			
 		}); 
 
-	}
+	},
+	
+	update: function(){
+		let data = {
+			id:$("#id").val(),
+			password:$("#password").val(),
+			email:$("#email").val()
+		};
+		
+		$.ajax({
+			type:"PUT",
+			url:"/api/user",
+			data:JSON.stringify(data),
+			contentType:"application/json;charset=utf-8",
+			dataType:"json"
+		}).done(function(response){
+			alert("회원 정보 수정이 완료되었습니다.");
+			location.href="/";
+		}).fail(function(response){
+			alert(JSON.stringify(error))
+		});
+		}
+	
 };
 
 index.init();
