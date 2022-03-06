@@ -39,6 +39,7 @@ let index = {
 	update: function(){
 		let data = {
 			id:$("#id").val(),
+			userName:$("#userName").val(),
 			password:$("#password").val(),
 			email:$("#email").val()
 		};

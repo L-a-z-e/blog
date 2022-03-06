@@ -18,6 +18,7 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
+	
 	@Transactional// 전체가 성공하면 성공, 하나라도 실패하면 전체가 롤백
 	public void register(User user) {
 			
@@ -42,6 +43,9 @@ public class UserService {
 		String encPassword = encoder.encode(rawPassword);
 		updatedUser.setPassword(encPassword);
 		updatedUser.setEmail(user.getEmail());
+		
+
+		 
 	}
 	
 
