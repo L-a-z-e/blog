@@ -22,7 +22,7 @@ spring:
   jpa:
     open-in-view: true #영속성을 프리젠테이션 계층까지 가져가고, 트랜잭션은 Service 계층에서 종료, 그래서 Lazy Loading - 프록시 객체에 대해서 수행가능
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #Entity를 만들때 변수명 그대로 테이블에, springname쓰면 카멜이 아니라 자동으로 언더바 표기법으로 바꿔줌
       use-new-id-generator-mappings: false #JPA의 기본 넘버링 전략을 따라가지 않는다는 뜻
@@ -36,5 +36,7 @@ spring:
     serialization:
       fail-on-empty-beans: false
       
+laze:
+  key: laze1234      
       
      

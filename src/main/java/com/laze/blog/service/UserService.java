@@ -18,6 +18,12 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
+	@Transactional(readOnly = true)
+	public User checkMember(String userName) {
+		return userRepository.findByUserName(userName).orElseGet(()->{
+			return new User();
+		});
+	}
 	
 	@Transactional// 전체가 성공하면 성공, 하나라도 실패하면 전체가 롤백
 	public void register(User user) {
@@ -39,12 +45,14 @@ public class UserService {
 				.orElseThrow(()->{
 					return new IllegalArgumentException("회원찾기 실패");
 				});
+		// Validateion 체크
+		if(updatedUser.getOauth()==null || updatedUser.getOauth().equals("")) {
 		String rawPassword = user.getPassword();
 		String encPassword = encoder.encode(rawPassword);
 		updatedUser.setPassword(encPassword);
 		updatedUser.setEmail(user.getEmail());
+		}
 		
-
 		 
 	}
 	
