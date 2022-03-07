@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,7 +50,8 @@ public class Board {
 	private User user;
 														 // Lazy 필요하면 가져오기
 	@OneToMany(mappedBy = "board",fetch = FetchType.EAGER) // mappedBy 연관관계의 주인이 아님, 컬럼만들지말라는 뜻, board는 Reply 에 있는 필드명임
-	private List<Reply> reply;
+	@JsonIgnoreProperties({"board"})
+	private List<Reply> replys;
 	
 	
 	@CreationTimestamp
