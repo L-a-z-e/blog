@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -51,6 +52,7 @@ public class Board {
 														 // Lazy 필요하면 가져오기
 	@OneToMany(mappedBy = "board",fetch = FetchType.EAGER) // mappedBy 연관관계의 주인이 아님, 컬럼만들지말라는 뜻, board는 Reply 에 있는 필드명임
 	@JsonIgnoreProperties({"board"})
+	@OrderBy("id desc")
 	private List<Reply> replys;
 	
 	

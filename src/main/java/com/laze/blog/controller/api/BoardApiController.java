@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.laze.blog.config.auth.PrincipalDetail;
 import com.laze.blog.dto.ResponseDto;
 import com.laze.blog.model.Board;
+import com.laze.blog.model.Reply;
 import com.laze.blog.service.BoardService;
 
 @RestController
@@ -47,6 +48,15 @@ public class BoardApiController {
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
+	}
+	
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResponseDto<Integer> replySave(@PathVariable int boardId,@RequestBody Reply reply,@AuthenticationPrincipal PrincipalDetail principal){
+		
+
+		
+		boardService.replySave(principal.getUser(), boardId, reply);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 
 	
